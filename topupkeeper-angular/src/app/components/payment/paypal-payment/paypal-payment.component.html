@@ -1,0 +1,174 @@
+<div class="common__section">
+  <div class="container-fluid">
+  <div class="divided__common__body">
+  <div class="common__body">
+  <div class="common__body__section">
+  <div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-homeblocksh2" role="tabpanel" aria-labelledby="pills-home-tabh2">
+  <section class="payment__section pt__60 pb-120">
+    <div class="container">
+       <form action="#" method="post">
+          <div class="row g-4">
+             <div class="col-md-12 col-lg-4 col-xl-3">
+                <div class="checkout__radio">
+                      <p class="primary-text fz-24 fw-400">Select any one</p>
+                      <div class="checkout__radio-wrapper">
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="cCard4" name="pay-method" value="Credit/Debit Cards" >
+                            <label for="cCard4">Credit/Debit Cards</label>
+                         </div>
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="paypal5" name="pay-method" value="PayPal">
+                            <label for="paypal5">PayPal</label>
+                         </div>
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="payoneer4" name="pay-method" value="Payoneer">
+                            <label for="payoneer4">Payoneer</label>
+                         </div>
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="visa5" name="pay-method" value="Visa">
+                            <label for="visa5">Visa</label>
+                         </div>
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="mastercard6" name="pay-method" value="Mastercard">
+                            <label for="mastercard6">Mastercard</label>
+                         </div>
+                         <div class="checkout__radio-single">
+                            <input type="radio" class="form-check-input" id="fastPay5" name="pay-method" value="Fastpay">
+                            <label for="fastPay5">Fastpay</label>
+                         </div>
+                      </div>
+                </div>
+             </div>
+             <div class="col-md-12 col-lg-8 col-xl-9">
+                <div class="checkout__single-wrapper">
+                      <div class="checkout__single">
+                         <h4 class="billing fw-700">Billing address</h4>
+                         <div class="transactionid d-flex align-items-center">
+                            <span class="tran fz-18 fw-500">
+                               Transaction ID: 25246584
+                            </span>
+                            <span class="tran fz-18 fw-500">
+                               Total Payable Amount: $457
+                            </span>
+                         </div>
+                         <div class="checkout__single-form">
+                            <div class="row g-4">
+                               <div class="col-lg-6">
+                                  <div class="input-single">
+                                     <input type="text" name="user-first-name" id="userFirstName4" required placeholder="First Name">
+                                  </div>
+                               </div>
+                                  <div class="col-lg-6">
+                                  <div class="input-single">
+                                     <input type="text" name="user-last-name" id="userLastName2" required placeholder="Last Name">
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                     <div class="input-single">
+                                        <input type="email" name="user-check-email" id="userCheckEmail4" required placeholder="Email">
+                                     </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                     <div class="input-single">
+                                        <select class="country-select">
+                                           <option value="usa">USA</option>
+                                           <option value="aus">Aus</option>
+                                           <option value="uk">UK</option>
+                                           <option value="ned">NED</option>
+                                        </select>
+                                     </div>
+                                  </div>
+                                  <div class="col-lg-12">
+                                     <div class="input-single">
+                                        <textarea name="user-address" rows="5" id="userAddress2" placeholder="Address"></textarea>
+                                     </div>
+                                  </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="checkout__single checkout__single__bg">
+                         <h4 class="mb-4">Payment Methods</h4>
+                         <div class="card__text gap-3 mb__20 d-flex align-items-center justify-content-between">
+                            <span class="dtext xs-16 fw-400 fz-24 lato">
+                               Credit Card / Debit Card
+                            </span>
+                            <div class="payment__cards d-flex align-items-center gap-2">
+                               <a routerLink="javacript:void(0)">
+                                  <img src="assets/img/payment/paypals.png" alt="payment-card">
+                               </a>
+                               <a routerLink="javacript:void(0)">
+                                  <img src="assets/img/payment/visas.png" alt="payment-card">
+                               </a>
+                               <a routerLink="javacript:void(0)">
+                                  <img src="assets/img/payment/fastpay.png" alt="payment-card">
+                               </a>
+                               <a routerLink="javacript:void(0)">
+                                  <img src="assets/img/payment/payoneer.png" alt="payment-card">
+                               </a>
+                               <a routerLink="javacript:void(0)" class="master">
+                                  <img src="assets/img/payment/mastercard.png" alt="payment-card">
+                               </a>
+                            </div>
+                         </div>
+                         <div class="checkout__single-form">
+                            <p class="payment"></p>
+                            <div class="row g-3">
+                               <div class="col-lg-12">
+                                  <div class="input-single">
+                                     <label for="userCardNumber3">Card number</label>
+                                     <input type="number" name="user-card-number" id="userCardNumber3" placeholder="2456 1665 5155 5151">
+                                  </div>
+                               </div>
+                               <div class="col-lg-6">
+                                  <div class="input-single">
+                                     <label for="userCardDate4">Expiry date</label>
+                                     <input type="text" id="userCardDate4" placeholder="DD/MM/YY">
+                                  </div>
+                               </div>
+                               <div class="col-lg-6">
+                                  <div class="input-single">
+                                     <label for="userCvc4">Espiry date</label>
+                                     <input type="text" maxlength="3" name="user-card-cvc" id="userCvc4" required placeholder="DD/MM/YY">
+                                  </div>
+                               </div>
+                               <div class="col-lg-12">
+                                  <div class="input-single">
+                                     <label for="userCardName6">CVC / CVV</label>
+                                     <input type="text" name="user-card-name" id="userCardName6" placeholder="3 digits">
+                                  </div>
+                               </div>
+                               <div class="col-lg-12">
+                                  <div class="input-single">
+                                     <label for="userCardNamecard7">Nmae on card</label>
+                                     <input type="text" name="user-card-namecard" id="userCardNamecard7" placeholder="J. smith">
+                               </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="input-esingl input-check payment__save">
+                            <input class="form-check-input" type="checkbox" id="saveForNextcard6">
+                            <label for="saveForNextcard6">Save for my next payment</label>
+                         </div>
+                         <div class="text-center mt-4">
+                            <a routerLink="/payment-successful" class="cmn__btn">
+                               <span>
+                                  Payment Now
+                               </span>
+                            </a>
+                         </div>
+                      </div>
+                </div>
+             </div>
+          </div>
+    </form>
+    </div>
+  </section>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
