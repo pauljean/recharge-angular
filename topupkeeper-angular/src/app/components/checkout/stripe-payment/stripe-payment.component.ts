@@ -1,20 +1,27 @@
 import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 
 import {
   injectStripe,
   StripeElementsDirective,
-  StripePaymentElementComponent
+  StripePaymentElementComponent,
 } from 'ngx-stripe';
 import {
   StripeElementsOptions,
-  StripePaymentElementOptions
+  StripePaymentElementOptions,
 } from '@stripe/stripe-js';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { CheckoutService } from '../../../services/checkout.service';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-stripe-payment',
   templateUrl: './stripe-payment.component.html',
@@ -23,8 +30,13 @@ import { CheckoutService } from '../../../services/checkout.service';
     ReactiveFormsModule,
     MatInputModule,
     StripeElementsDirective,
-    StripePaymentElementComponent
-  ]
+    StripePaymentElementComponent,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatToolbarModule,
+  ],
 })
 export class StripePaymentComponent implements OnInit {
   @ViewChild(StripePaymentElementComponent)
@@ -39,13 +51,17 @@ export class StripePaymentComponent implements OnInit {
     address: [''],
     zipcode: [''],
     city: [''],
-    amount: [2500, [Validators.required, Validators.pattern(/d+/)]]
+    amount: [2500, [Validators.required]],
   });
 
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
     appearance: {
-      theme: 'flat',
+      theme: 'stripe',
+      labels: 'floating',
+      variables: {
+        colorPrimary: '#2196F3',
+      },
     },
   };
 
@@ -54,8 +70,8 @@ export class StripePaymentComponent implements OnInit {
       type: 'tabs',
       defaultCollapsed: false,
       radios: false,
-      spacedAccordionItems: false
-    }
+      spacedAccordionItems: false,
+    },
   };
 
   // Replace with your own public key
@@ -66,9 +82,9 @@ export class StripePaymentComponent implements OnInit {
     this.checkoutService
       .createPaymentIntent({
         amount: this.paymentForm.get('amount')!.value,
-        currency: 'usd'
+        currency: 'usd',
       })
-      .subscribe(pi => {
+      .subscribe((pi) => {
         this.elementsOptions.clientSecret = pi.client_secret as string;
       });
   }
@@ -77,7 +93,8 @@ export class StripePaymentComponent implements OnInit {
     if (this.paying() || this.paymentForm.invalid) return;
     this.paying.set(true);
 
-    const { name, email, address, zipcode, city } = this.paymentForm.getRawValue();
+    const { name, email, address, zipcode, city } =
+      this.paymentForm.getRawValue();
 
     this.stripe
       .confirmPayment({
@@ -90,14 +107,14 @@ export class StripePaymentComponent implements OnInit {
               address: {
                 line1: address as string,
                 postal_code: zipcode as string,
-                city: city as string
-              }
-            }
-          }
+                city: city as string,
+              },
+            },
+          },
         },
-        redirect: 'if_required'
+        redirect: 'if_required',
       })
-      .subscribe(result => {
+      .subscribe((result) => {
         this.paying.set(false);
         console.log('Result', result);
         if (result.error) {
