@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-  apiURL: 'http://localhost:7075/topupkeeper'
+  apiURL: 'http://141.94.76.146:7075/topupkeeper'
 };

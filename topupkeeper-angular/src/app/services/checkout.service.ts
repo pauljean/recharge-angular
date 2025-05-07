@@ -1,20 +1,29 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { StripePayment } from '../models/payment/stripe-payment.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
+import { PaymentIntent } from '@stripe/stripe-js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
 
-  StripePublicKey = 'pk_test_51N1v0aK2r7x4jX3J6g5Q9Zk8z4Y5f3h4d4f4d4f4d4f4f4f4f4f4f4f4f4f4f4f4';
+  StripePublicKey = 'pk_test_51RJupp2fKSXSOX3k1Zniq73ECfe9RUXzLq2Owbky7i0LPIrgnqHbftCwPLr54XdHaDNP3U8SrSJcpFiM7o4XZPxR00GIvaVCel';
+
+  private readonly http: HttpClient = inject(HttpClient);
 
   constructor() { }
 
-  createPaymentIntent(arg0: { amount: any; currency: string; }): Observable<any>  {
-    throw new Error('Method not implemented.');
+  createPaymentIntent(data: { amount: any; currency: string; }): Observable<any>  {
+   return  this.http.post<PaymentIntent>(
+      `${environment.apiURL}/payment/payment-intent`, data,
+   );
+
   }
 
-  pay(): Observable<any> {
+  pay(stripePaymentModel: StripePayment): Observable<any> {
     throw new Error('Method not implemented.');
   }
 
