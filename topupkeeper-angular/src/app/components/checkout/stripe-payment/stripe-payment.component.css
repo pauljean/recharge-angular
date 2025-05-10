@@ -1,0 +1,32 @@
+.stripe-card-outline {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+  padding: 12px;
+  transition: border-color 0.3s;
+}
+
+.stripe-card-outline:focus-within {
+  border-color: #3f51b5; /* Material primary color */
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #1a73e8 ; /* Your custom color */
+
+}
+::ng-deep .outlined-focus-outline-color{
+  border-color: #1a73e8 ; /* Your custom color */
+}
+:host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__leading {
+  border-color: #0267f8 ;
+}
+
+:host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__notch {
+  border-color: #0267f8 ;
+}
+
+:host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: #0267f8 ;
+}
+
+:host ::ng-deep .mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__leading {
+  border-color: #0267f8;
+}

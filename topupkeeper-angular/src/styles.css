@@ -6,7 +6,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .StripeElement {
   background-color: white;
   height: 40px;
-  padding: 10px 12px;
   border-radius: 4px;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px 0 #b8cbe5;
@@ -23,8 +22,149 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+  background-color: #fff !important;
 }
 .bg-gray-100{
   background-color: #f3f4f6 !important;
+}
+/* .StripeElement {
+  height: auto !important;
+  background-color: transparent !important;
+  border: none !important;
+    box-shadow: none !important;
+} */
+/* .stripe .visible{
+  max-width: fit-content !important;
+  width: 100% !important;
+} */
+
+.stipe .buttons-container{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+.buttons-container,
+#buttons-container{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
+}
+#buttons-container{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  /* justify-content: center !important; */
+}
+.StripeElement {
+    height: auto !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    /* border: 1px solid rgb(48, 46, 46) !important; */
+    /* padding: 16px 14px !important; */
+}
+.stripe .mat-mdc-card{
+  background-color: #fff !important;
+  box-shadow: none !important;
+ 
+}
+
+
+.custom-input .mat-form-field-outline {
+  border-color: #ccc !important;
+  border-width: 1px !important;
+  border-radius: 6px !important;
+}
+
+.custom-input.mat-focused .mat-form-field-outline-thick {
+  border-color: #1a73e8 !important;
+}
+
+.custom-input .mat-form-field-flex {
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  background-color: #fff !important;
+}
+
+.custom-input .mat-form-field-label {
+  color: #6c757d !important;
+}
+
+.custom-input.mat-focused .mat-form-field-label {
+  color: #1a73e8 !important;
+}
+.p-LinkAutofillPrompt {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+.stripe .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before{
+  display: none !important;
+}
+.mdc-text-field--outlined  {
+  border-color: #e6e6e6 !important;
+  border-width: 2px !important;
+}
+.stipe .Input:focus, .p-Input--focused {
+  border-color: #1a73e8 !important;
+  box-shadow: none !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  stroke: #ccc !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  stroke: #1a73e8 !important;
+}
+.mdc-text-field--outlined{
+  border-color: #e6e6e6 !important;
+  
+}
+/* .stripe .mdc-text-field--outlined .mdc-notched-outline__leading {
+  border: 1px 0 1px 1px  !important;
+  border-color: #e6e6e6  !important;
+}
+
+.stripe .mdc-text-field--outlined .mdc-notched-outline__notch {
+  border-color: #e6e6e6  !important;
+}
+
+.stripe .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: #e6e6e6  !important;
+}
+
+.stripe .mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__leading {
+  border-color: #0267f8 !important;
+  box-shadow: 0 0 0 0.3 #0267f8 !important;
+}
+.stripe .mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__notch {
+  border-color: #0267f8 !important;
+  box-shadow: 0 0 0 0.3 #0267f8 !important;
+}
+.stripe .mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #0267f8 !important;
+  box-shadow: 0 0 0 0.3 #0267f8 !important;
+} */
+.stripe .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #fff !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.stripe .mat-mdc-text-field-wrapper{
+  border: 2px solid #e6e6e6 !important;
+  border-radius: 4px !important;
+}
+.stripe .mat-mdc-text-field-wrapper:focus-within{
+  border: 2px solid #2196f3 !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), #2196f3 !important;
+}
+.stripe .mdc-line-ripple{
+  display: none !important;
+}
+.stripe .mat-mdc-form-field.mat-focused .mat-mdc-form-field-focus-overlay{
+  display: none !important;
+}
+.stripe .mdc-text-field--focused .mdc-floating-label {
+  color: #232324 !important;
+  opacity: 0.8 !important;
 }
