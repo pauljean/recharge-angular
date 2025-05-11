@@ -22,6 +22,7 @@
     "@angular/router": "^19.1.0",
     "@stripe/stripe-js": "^5.10.0",
     "bootstrap": "^5.3.5",
+    "material": "^0.9.23",
     "ngx-paypal": "^11.0.0",
     "ngx-stripe": "^19.0.0",
     "rxjs": "~7.8.0",

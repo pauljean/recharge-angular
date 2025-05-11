@@ -6,5 +6,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideNgxStripe } from 'ngx-stripe';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient(), provideNgxStripe()]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(),
+    provideNgxStripe(),
+  ],
 };

@@ -1,20 +1,28 @@
 import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 
 import {
   injectStripe,
   StripeElementsDirective,
-  StripePaymentElementComponent
+  StripePaymentElementComponent,
 } from 'ngx-stripe';
 import {
+  StripeCardElementOptions,
   StripeElementsOptions,
-  StripePaymentElementOptions
+  StripePaymentElementOptions,
 } from '@stripe/stripe-js';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { CheckoutService } from '../../../services/checkout.service';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-stripe-payment',
   templateUrl: './stripe-payment.component.html',
@@ -23,8 +31,13 @@ import { CheckoutService } from '../../../services/checkout.service';
     ReactiveFormsModule,
     MatInputModule,
     StripeElementsDirective,
-    StripePaymentElementComponent
-  ]
+    StripePaymentElementComponent,
+    MatButtonModule,
+    MatCardModule,
+
+    MatDividerModule,
+    MatToolbarModule,
+  ],
 })
 export class StripePaymentComponent implements OnInit {
   @ViewChild(StripePaymentElementComponent)
@@ -34,28 +47,38 @@ export class StripePaymentComponent implements OnInit {
   private readonly checkoutService = inject(CheckoutService);
 
   paymentForm = this.fb.group({
-    name: ['John doe', [Validators.required]],
-    email: ['support@ngx-stripe.dev', [Validators.required]],
     address: [''],
     zipcode: [''],
     city: [''],
-    amount: [2500, [Validators.required, Validators.pattern(/d+/)]]
+    amount: [2500, [Validators.required, Validators.pattern(/d+/)]],
   });
 
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
     appearance: {
-      theme: 'flat',
+      theme: 'stripe',
+      labels: 'floating',
+      variables: {
+        colorPrimary: '#2196f3',
+      },
     },
   };
 
   paymentElementOptions: StripePaymentElementOptions = {
     layout: {
       type: 'tabs',
-      defaultCollapsed: false,
+      defaultCollapsed: true,
       radios: false,
-      spacedAccordionItems: false
-    }
+      spacedAccordionItems: false,
+    },
+  };
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        fontSize: '18px',
+        // lineHeight: '2.8', // makes the element taller'
+      },
+    },
   };
 
   // Replace with your own public key
@@ -66,9 +89,9 @@ export class StripePaymentComponent implements OnInit {
     this.checkoutService
       .createPaymentIntent({
         amount: this.paymentForm.get('amount')!.value,
-        currency: 'usd'
+        currency: 'usd',
       })
-      .subscribe(pi => {
+      .subscribe((pi) => {
         this.elementsOptions.clientSecret = pi.client_secret as string;
       });
   }
@@ -77,7 +100,8 @@ export class StripePaymentComponent implements OnInit {
     if (this.paying() || this.paymentForm.invalid) return;
     this.paying.set(true);
 
-    const { name, email, address, zipcode, city } = this.paymentForm.getRawValue();
+    const { name, email, address, zipcode, city } =
+      this.paymentForm.getRawValue();
 
     this.stripe
       .confirmPayment({
@@ -88,16 +112,15 @@ export class StripePaymentComponent implements OnInit {
               name: name as string,
               email: email as string,
               address: {
-                line1: address as string,
                 postal_code: zipcode as string,
-                city: city as string
-              }
-            }
-          }
+                city: city as string,
+              },
+            },
+          },
         },
-        redirect: 'if_required'
+        redirect: 'if_required',
       })
-      .subscribe(result => {
+      .subscribe((result) => {
         this.paying.set(false);
         console.log('Result', result);
         if (result.error) {
@@ -113,3 +136,98 @@ export class StripePaymentComponent implements OnInit {
       });
   }
 }
+
+// import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+// import {
+//   UntypedFormBuilder,
+//   Validators,
+//   ReactiveFormsModule,
+// } from '@angular/forms';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatDividerModule } from '@angular/material/divider';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+// import {
+//   injectStripe,
+//   StripeElementsDirective,
+//   StripeCardComponent,
+// } from 'ngx-stripe';
+// import {
+//   StripeCardElementOptions,
+//   StripeElementsOptions,
+// } from '@stripe/stripe-js';
+
+// @Component({
+//   selector: 'app-stripe-payment',
+//   standalone: true,
+//   templateUrl: './stripe-payment.component.html',
+//   imports: [
+//     ReactiveFormsModule,
+//     MatInputModule,
+//     StripeElementsDirective,
+//     StripeCardComponent,
+//     MatButtonModule,
+//     MatCardModule,
+//     MatDividerModule,
+//     MatToolbarModule,
+//   ],
+// })
+// export class StripePaymentComponent implements OnInit {
+//   @ViewChild(StripeCardComponent) cardElement!: StripeCardComponent;
+
+//   private readonly fb = inject(UntypedFormBuilder);
+//   stripe = injectStripe(
+//     'pk_test_51RJupp2fKSXSOX3k1Zniq73ECfe9RUXzLq2Owbky7i0LPIrgnqHbftCwPLr54XdHaDNP3U8SrSJcpFiM7o4XZPxR00GIvaVCel'
+//   ); // Replace with actual key
+
+//   paymentForm = this.fb.group({
+//     name: ['', [Validators.required]],
+//     email: ['', [Validators.required, Validators.email]],
+//   });
+
+//   paying = signal(false);
+
+//   cardOptions: StripeCardElementOptions = {
+//     style: {
+//       base: {
+//         iconColor: '#434891',
+//         color: '#434891',
+//         fontWeight: '300',
+//         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+//         fontSize: '18px',
+//         '::placeholder': {
+//           color: '#CFD7E0',
+//         },
+//       },
+//     },
+//   };
+
+//   elementsOptions: StripeElementsOptions = {
+//     locale: 'en',
+//   };
+
+//   ngOnInit() {}
+
+//   createToken() {
+//     if (this.paying() || this.paymentForm.invalid) return;
+//     this.paying.set(true);
+
+//     const name = this.paymentForm.get('name')?.value;
+
+//     this.stripe
+//       .createToken(this.cardElement.element, { name })
+//       .subscribe((result) => {
+//         this.paying.set(false);
+
+//         if (result.token) {
+//           console.log('Token created:', result.token.id);
+//           alert('Payment token generated successfully.');
+//           // Send this token to your server to charge the card
+//         } else if (result.error) {
+//           console.error(result.error.message);
+//           alert('Error: ' + result.error.message);
+//         }
+//       });
+//   }
+// }
